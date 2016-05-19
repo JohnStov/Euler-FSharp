@@ -27,3 +27,15 @@ let isPalindrome n =
     s = reverse s
 
 [for x in [100..999] do for y in [100..999] do yield (x * y)] |> List.filter isPalindrome |> List.max
+
+// Problem 5
+let isEvenlyDivisibleBy nums n =
+    nums |> List.forall (fun x -> n % x = 0)
+
+let rec allInts n = seq {
+    yield n
+    yield! allInts (n + 1)
+    }
+
+allInts 1 |> Seq.find (isEvenlyDivisibleBy ([2..20] |> List.rev)) |> int
+
